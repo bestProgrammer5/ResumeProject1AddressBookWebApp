@@ -1,0 +1,120 @@
+<div class="container-fluid m-0 p-0">
+    
+    <!-- ************** Top Panel ************* -->
+    <div class="row text-bg-primary p-2 align-items-center">
+        <div class="col-6">
+            <h1>YourAddressBook</h1>
+        </div>
+        <div class="col-6 text-end">
+            <button type="button" class="btn btn-warning" (click)="openModal()">Add New Contact</button>
+        </div>
+    </div>
+
+    <div class="row m-0 p-0">
+        <div class="col-12 m-0 p-0">
+
+    <!-- ************** Table ************* -->
+    <table class="table table-light table-striped table-hover text-center mt-1">
+        <thead class="table-dark">
+            <tr>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Phone Number</th>
+                <th>E-Mail</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        @if(contactList && contactList.length > 0)   {
+
+        <!-- For Loop -->
+        @for (contact of contactList; track $index) {
+           <tr>
+               <th>{{contact.lastName}}</th>
+                <th>{{contact.firstName}}</th>
+                <th>{{contact.phoneNumber}}</th>
+                <th>{{contact.emailAddress}}</th>
+                <th>
+                    <button class="btn btn-success m-1" (click)="edit(contact)">Edit</button>
+                    <button class="btn btn-danger" (click)="remove(contact)">Remove</button>
+                </th>  
+            </tr>   
+        }   
+
+        } @else {
+            <h2 class="mt-2">No Contacts Found</h2>
+        }
+        </tbody>
+
+    </table>
+    </div>
+    </div>
+
+</div>
+
+
+
+
+<!-- ****************************** The Modal ********************************** -->
+<div class="modal" id="myModal" #myModal>
+    <div class="modal-dialog">
+        <div class="modal-content">
+ 
+        <!-- *********** Modal Header **************** -->
+        <div class="modal-header">
+        
+            <!-- *********** Modal Title ********** -->
+             @if(contactForm.value.id != 0)  {
+                <h4 class="modal-title">Update Contact</h4>
+             }  @else {
+                <h4 class="modal-title">Add new contact</h4>
+             }      
+
+            <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()"></button>
+        </div>
+  
+
+        <!-- ********** Main Modal body and Form ************ -->
+        <form [formGroup]="contactForm" (ngSubmit)="submitForm()">
+
+        <div class="modal-body">
+
+          <div class="row">
+            <div class="col-6">
+                <input type="text" formControlName="lastName" name="lastName"  class="form-control" placeholder="Last Name">
+            </div>
+            <div class="col-6">
+                <input type="text" formControlName="firstName" name="firstName" class="form-control" placeholder="First Name">
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-6">
+                <input type="text" formControlName="phoneNumber" name="phoneNumber"  class="form-control" placeholder="Phone Name">
+            </div>
+            <div class="col-6">
+                <input type="text" formControlName="emailAddress"  name="emailAddress"  class="form-control" placeholder="Email Name">
+            </div>
+          </div>
+
+        </div>
+   
+        <!-- ************* Modal footer ******************** -->
+        <div class="modal-footer">
+
+            <!-- ************* Save Button - Modal Footer ******************** --> 
+            @if(contactForm.value.id == 0) {
+                <button type="submit" class="btn btn-success" [disabled]="this.contactForm.invalid" data-bs-dismiss="modal">Save</button>
+            } @else {
+                <button type="submit" class="btn btn-success" [disabled]="this.contactForm.invalid" data-bs-dismiss="modal">Update</button>
+            }
+
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="closeModal()">Close</button>
+        </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+  <!-- ****************************** The Modal ********************************** -->

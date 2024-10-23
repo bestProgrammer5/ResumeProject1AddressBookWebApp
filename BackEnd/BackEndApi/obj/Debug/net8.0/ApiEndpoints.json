@@ -1,0 +1,65 @@
+[
+  {
+    "ContainingType": "BackEndApi.Controllers.ApiController",
+    "Method": "AllContacts",
+    "RelativePath": "api/Api",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackEndApi.Controllers.ApiController",
+    "Method": "saveContact",
+    "RelativePath": "api/Api",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "contact",
+        "Type": "BackEndApi.Models.ContactVariables",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackEndApi.Controllers.ApiController",
+    "Method": "updateContact",
+    "RelativePath": "api/Api/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "contact",
+        "Type": "BackEndApi.Models.ContactVariables",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackEndApi.Controllers.ApiController",
+    "Method": "deleteContact",
+    "RelativePath": "api/Api/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
